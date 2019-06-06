@@ -51,7 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['add']='patients/add';
 $route['home']='patients/home';
+$route['edit_patient_pic']='patients/home/edit_patient_pic';
+$route['login']='patients/login';
+$route['logout']='patients/login/logout';
 $route['docadd']='patients/docadd';
-$route['default_controller'] = 'patients/add';
+$route['default_controller'] = 'patients/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

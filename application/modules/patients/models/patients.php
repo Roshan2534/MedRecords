@@ -22,7 +22,7 @@ class patients extends MY_Model
 
   public function get_patients(){
     $querry=$this->db->select('patients.id,patients.firstname,patients.lastname,patients.email,patients.age,patients.gender,
-    patients.address,patients.Contact_no,patients.Bloodgrp,patients.AllergicTo,patients.Significant_history')->from('patients')->order_by('patients.id','DESC')->get();
+    patients.address,patients.Contact_no,patients.Bloodgrp,patients.AllergicTo,patients.Significant_history,patients.profile_pic')->from('patients')->order_by('patients.id','DESC')->get();
     return $querry->result_array();
   }
 }
