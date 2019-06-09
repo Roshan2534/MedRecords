@@ -1,8 +1,6 @@
 <div class="col-8 center-block m-top-50 add-page grey-bg">
 <h2>Add New Patient</h2>
-<?php 
-
-
+<?php
 $firstname=array(
     'name'=>'firstname',
     'class' => 'form-control m-top-10',

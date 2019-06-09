@@ -24,12 +24,13 @@ class add extends MX_Controller{
         $this->form_validation->set_message('is_unique','The Email you are trying to register is already in use..!!');
         if($this->form_validation->run()===FALSE)
         {
-        $data['title']='Add Patient';
+        $data['title']='Add Patient | '.$this->session->userdata['username'];
         $data['module']='patients';
         $data['view_file']='add';
         echo Modules::run('templates/user_layout',$data);
         }
         else{
+            $doc_id = $this->session->userdata('doc_id');
             $firstname = $this->input->post('firstname');
             $lastname = $this->input->post('lastname');
             $email = $this->input->post('email');
@@ -60,7 +61,8 @@ class add extends MX_Controller{
                 'Bloodgrp'=>$bloodgrp,
                 'AllergicTo'=>$allergy,
                 'Significant_history'=>$significant_history,
-                'profile_pic'=>$profile_pic
+                'profile_pic'=>$profile_pic,
+                'doc_id'=>$doc_id
             );
 
             $data['insert'] = $this->patients->save($patientData);

@@ -16,7 +16,8 @@ class home extends MX_Controller{
         }
     }
     public function index(){
-        $data['patients']=$this->patients->get_patients();
+        $doc_id = $this->session->userdata('doc_id');
+        $data['patients']=$this->patients->get_patients($doc_id);
         $data['title']='Home';
         $data['module']='patients';
         $data['view_file']='home';
@@ -25,12 +26,11 @@ class home extends MX_Controller{
     
     public function edit_patient_pic()
     {
-        $data['patients']=$this->patients->get_patients();
+        
         $data['title']='Edit Patient Pic';
         $data['module']='patients';
         $data['view_file']='edit_patient_pic';
-        $id = $this->session->userdata('user_id');
-        $data['patient_profile']=$this->patients->find($id);
+        $data['patients']=$this->patients->get_patients();
         echo Modules::run('templates/user_layout',$data);
     }
 }    

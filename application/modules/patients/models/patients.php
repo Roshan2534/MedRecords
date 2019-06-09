@@ -20,9 +20,9 @@ class patients extends MY_Model
     parent::__construct();
   }
 
-  public function get_patients(){
-    $querry=$this->db->select('patients.id,patients.firstname,patients.lastname,patients.email,patients.age,patients.gender,
-    patients.address,patients.Contact_no,patients.Bloodgrp,patients.AllergicTo,patients.Significant_history,patients.profile_pic')->from('patients')->order_by('patients.id','DESC')->get();
+  public function get_patients($doc_id){
+    $querry=$this->db->select('patients.id,patients.doc_id,patients.firstname,patients.lastname,patients.email,patients.age,patients.gender,
+    patients.address,patients.Contact_no,patients.Bloodgrp,patients.AllergicTo,patients.Significant_history,patients.profile_pic,doctor.username')->from('patients')->join('doctor','doctor.id=patients.doc_id')->where(array('patients.doc_id' => $doc_id))->order_by('patients.id','DESC')->get();
     return $querry->result_array();
   }
 }

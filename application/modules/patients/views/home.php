@@ -1,8 +1,7 @@
 <div class="profile-holder">
-
+<h1>Logged In As: <?= $this->session->userdata('username')  ?></h1>
   <div class="row grey-bg">
-
-
+  
     <?php
     if($this->session->flashdata('PatientRegistered')){
      ?>
@@ -18,6 +17,7 @@
      <?php
     }
       ?>
+      
     <?php
 if(empty($patients))
 {
@@ -25,6 +25,7 @@ if(empty($patients))
 }
 else
 {
+  
   foreach($patients as $patient):
   ?>
     <br>
@@ -41,10 +42,10 @@ else
      <p><strong>Contact</strong>:- <?= $patient['Contact_no']; ?></p>
      <p><strong>Blood grp</strong>:- <?= $patient['Bloodgrp']; ?></p>
      <p><strong>Age</strong>:- <?= $patient['age']; ?></p>
-     <?= anchor('view_patient', 'View Patient Info', array('class'=> 'btn btn-primary')); ?>
-     <?= anchor('add_prescription', 'Add Prescription', array('class'=> 'btn btn-primary')); ?>
-     <?= anchor('edit_patient', 'Edit Patient Info', array('class'=> 'btn btn-primary')); ?>
-     <?= anchor('edit_patient_pic', 'Edit Patient Pic', array('class'=> 'btn btn-primary')); ?>
+     <?= anchor('view_patient/'.$patient['id'], 'View Patient Info', array('class'=> 'btn btn-primary')); ?>
+     <?= anchor('add_prescription/'.$patient['id'], 'Add Prescription', array('class'=> 'btn btn-primary')); ?>
+     <?= anchor('edit_patient/'.$patient['id'], 'Edit Patient Info', array('class'=> 'btn btn-primary')); ?>
+     <?= anchor('edit_patient_pic/'.$patient['id'], 'Edit Patient Pic', array('class'=> 'btn btn-primary')); ?>
      <br>
     <br>
     <hr>
