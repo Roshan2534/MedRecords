@@ -1,4 +1,4 @@
-<div class="col-8 center-block m-top-50 add-page grey-bg">
+<div class="col-10 center-block m-top-50 add-page grey-bg">
 <h2>Add Doctor</h2>
 <?php 
 $username=array(

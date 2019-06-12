@@ -1,13 +1,14 @@
 <div class="col-10 center-block m-top-50 add-page grey-bg">
-<h2>Add New Patient</h2>
+<h2>Edit Patient</h2>
 <?php
+$id = $edit_patient['id'];
 $firstname=array(
     'name'=>'firstname',
     'class' => 'form-control m-top-10',
     'type' => 'text',
     'id' => 'firstname',
     'placeholder' => 'Enter First Name',
-    'value'=> set_value('firstname')
+    'value'=> $edit_patient['firstname']
 );
 
 $lastname=array(
@@ -16,7 +17,7 @@ $lastname=array(
     'type' => 'text',
     'id' => 'lastname',
     'placeholder' => 'Enter Last Name',
-    'value'=> set_value('lastname')
+    'value'=> $edit_patient['lastname']
 );
 
 $email=array(
@@ -25,7 +26,7 @@ $email=array(
     'type' => 'email',
     'id' => 'email',
     'placeholder' => 'Enter Email',
-    'value'=> set_value('email')
+    'value'=> $edit_patient['email']
 );
 
 $age=array(
@@ -34,20 +35,7 @@ $age=array(
     'type' => 'text',
     'id' => 'age',
     'placeholder' => 'Enter Age',
-    'value'=> set_value('age')
-);
-
-$gender=array(
-    'name'=>'gender',
-    'class' => 'form-control m-top-10',
-    'id'=>'gender',
-    'value'=>set_value('gender')
-);
-$gender_option=array(
-    ''=>'Select Gender',
-    'male'=>'Male',
-    'female'=>'Female',
-    'others'=>'Others'
+    'value'=> $edit_patient['age']
 );
 
 $address=array(
@@ -57,7 +45,7 @@ $address=array(
     'cols'=>'10',
     'id'=>'address',
     'placeholder' => 'Enter Address',
-    'value'=>set_value('address')
+    'value'=>$edit_patient['address']
 );
 
 $contact=array(
@@ -66,14 +54,14 @@ $contact=array(
     'type' => 'text',
     'id' => 'contact',
     'placeholder' => 'Enter Contact',
-    'value'=> set_value('contact')
+    'value'=> $edit_patient['Contact_no']
 );
 
 $bloodgrp=array(
     'name'=>'bloodgrp',
     'class' => 'form-control m-top-10',
     'id'=>'bloodgrp',
-    'value'=>set_value('bloodgrp')
+    'value'=>$edit_patient['Bloodgrp']
 );
 $bloodgrp_option=array(
     ''=>'Select Blood Group',
@@ -93,8 +81,18 @@ $allergy=array(
     'type' => 'text',
     'id' => 'allergy',
     'placeholder' => 'Enter Allergy',
-    'value'=> set_value('Allergy')
+    'value'=> $edit_patient['AllergicTo']
 );
+
+$id = array(
+    'name' => 'id',
+    'class' => 'form-control m-top-10',
+    'type' => 'varchar',
+    'id' => 'id',
+    'placeholder' => '',
+    'value' => $edit_patient['id'],
+    'readonly' => 'true'
+  );
 
 $significant_history=array(
     'name' => 'significant_history',
@@ -103,16 +101,20 @@ $significant_history=array(
     'cols'=>'10',
     'id'=>'significant_history',
     'placeholder' => 'Enter significant history',
-    'value'=>set_value('significant_history')
+    'value'=>$edit_patient['Significant_history']
 
 );
 
 $patient_submit=array(
     'name'=>'patient_submit',
     'class' => 'btn btn-primary m-top-10',
-    'value'=>'Add'
+    'value'=>'Edit'
 );
-echo form_open('add', array('class'=>'form-horizontal m-top-20'));
+echo form_open('edit_patientinfo', array('class'=>'form-horizontal m-top-20'));
+
+echo form_input($id);
+echo '<div class="error">'.form_error('id').'</div>';
+
 
 echo form_input($firstname);
 echo '<div class="error">'.form_error('firstname').'</div>';
@@ -125,9 +127,6 @@ echo '<div class="error">'.form_error('email').'</div>';
 
 echo form_input($age);
 echo '<div class="error">'.form_error('age').'</div>';
-
-echo form_dropdown($gender,$gender_option);
-echo '<div class="error">'.form_error('gender').'</div>';
 
 echo form_textarea($address);
 echo '<div class="error">'.form_error('address').'</div>';

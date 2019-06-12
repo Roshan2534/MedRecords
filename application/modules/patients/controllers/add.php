@@ -24,7 +24,7 @@ class add extends MX_Controller{
         $this->form_validation->set_message('is_unique','The Email you are trying to register is already in use..!!');
         if($this->form_validation->run()===FALSE)
         {
-        $data['title']='Add Patient | '.$this->session->userdata['username'];
+        $data['title']='Add Patient ';
         $data['module']='patients';
         $data['view_file']='add';
         echo Modules::run('templates/user_layout',$data);

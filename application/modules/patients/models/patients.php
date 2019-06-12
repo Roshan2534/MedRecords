@@ -25,4 +25,10 @@ class patients extends MY_Model
     patients.address,patients.Contact_no,patients.Bloodgrp,patients.AllergicTo,patients.Significant_history,patients.profile_pic,doctor.username')->from('patients')->join('doctor','doctor.id=patients.doc_id')->where(array('patients.doc_id' => $doc_id))->order_by('patients.id','DESC')->get();
     return $querry->result_array();
   }
+
+  public function get_single_patient($id){
+    $querry=$this->db->select('patients.id,patients.doc_id,patients.firstname,patients.lastname,patients.email,patients.age,patients.gender,
+    patients.address,patients.Contact_no,patients.Bloodgrp,patients.AllergicTo,patients.Significant_history,patients.profile_pic,doctor.username')->from('patients')->join('doctor','doctor.id=patients.doc_id')->where(array('patients.id' => $id))->order_by('patients.id','DESC')->get();
+    return $querry->row_array();
+  }
 }
