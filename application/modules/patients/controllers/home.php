@@ -10,6 +10,7 @@ class home extends MX_Controller{
     $this->output->set_header('Cache-Control: post-check=0, pre-check=0', false);
     $this->output->set_header('Pragma: no-cache');
         $this->load->model('patients');
+        $this->load->model('prescriptions');
         if($this->session->userdata('is_logged_in')==FALSE)
         {
             redirect('login');
@@ -110,4 +111,95 @@ class home extends MX_Controller{
 
         }
     }
+    public function edit_patient_pic($id)
+    {
+        $id = $this->uri->segment(2);
+        if(empty($id))
+        {
+            show_404();
+        }
+        else{
+            $data['edit_patient_pic']=$this->patients->get_single_patient($id);
+            $data['title']='Edit Patient Pic';
+            $data['module']='patients';
+            $data['view_file']='edit_patient_pic';
+            echo Modules::run('templates/user_layout',$data);
+        }
+       }
+    
+       public function update_profile_pic()
+       {
+       
+         $config['upload_path']         = './assets/images/users/';
+         $config['allowed_types']       = 'jpg|jpeg|png';
+         $config['max_size']            = 5120;
+         $config['overwrite']           = TRUE;
+         $config['remove_spaces']       = TRUE;
+         $config['encrypt_name']        = TRUE;
+       
+         $this->load->library('upload', $config);
+         $field_name = 'profilefile';
+       
+         if( ! $this->upload->do_upload($field_name))
+         {
+             $data['error'] = $this->upload->display_errors();
+             $this->session->set_flashdata('UpdateProfilePicError', $data['error']);
+             redirect('home');
+         }
+       
+         else
+         {
+       
+            $id=$this->input->post('id');
+          
+           $data['profile_pic'] = $this->patients->find($id);
+           $profile_pic = $data['profile_pic']['profile_pic'];
+       
+           $image_path = $this->upload->data();
+           $data = array(
+             'profile_pic' => $image_path[file_name],
+           );
+       
+           $data['update'] = $this->patients->save($data, $id);
+       
+           if($data['update'] == $id)
+           {
+             if($profile_pic !== 'male.png' && $profile_pic !== 'female.png')
+             {
+               unlink(FCPATH . 'assets/images/users/'. $profile_pic);
+             }
+       
+             $this->session->set_flashdata('ProfileImageUpdated',
+                                           'Image Updated Successfully');
+       
+             redirect('home');
+       
+           }
+       
+           else {
+             echo 'can not update image';
+           }
+         }
+       
+       
+       }
+
+       public function add_prescription($id)
+    {
+        $id = $this->uri->segment(2);
+        if(empty($id))
+        {
+            show_404();
+        }
+        else{
+            $data['add_prescription']=$this->patients->get_single_patient($id);
+            $data['title']='Add prescription';
+            $data['module']='patients';
+            $data['view_file']='add_prescription';
+            echo Modules::run('templates/user_layout',$data);
+        }
+       }
+
+       
+          
 }

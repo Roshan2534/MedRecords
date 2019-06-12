@@ -31,6 +31,7 @@ echo form_input($password);
 echo '<div class="error">'.form_error('password').'</div>';
 
 echo form_submit($login_submit);
+echo form_close();
 echo '<br>';
 echo '<br>';
 

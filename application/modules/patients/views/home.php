@@ -1,7 +1,42 @@
+
 <div class="profile-holder">
 <h1>Logged In As: <?= $this->session->userdata('username')  ?></h1>
   <div class="row grey-bg">
   
+  <?php
+if($this->session->flashdata('UpdateProfilePicError')){
+ ?>
+<div class="col-10 m-top-50">
+  <div class="alert alert-dismissible alert-danger">
+    <div class="flash-data">
+      <button type="button" class="close" data-dismiss="alert">X</button>
+      <strong>Danger !</strong><?= $this->session->flashdata('UpdateProfilePicError');?>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+ <?php
+}
+  ?>
+
+
+  <?php
+  if($this->session->flashdata('ProfileImageUpdated')){
+   ?>
+  <div class="col-10 m-top-50">
+    <div class="alert alert-dismissible alert-success">
+      <div class="flash-data">
+        <button type="button" class="close" data-dismiss="alert">X</button>
+        <?= $this->session->flashdata('ProfileImageUpdated');?>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+   <?php
+  }
+    ?>
+
+
     <?php
     if($this->session->flashdata('PatientRegistered')){
      ?>

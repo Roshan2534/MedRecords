@@ -61,10 +61,7 @@ class Migration_Add_patients extends CI_Migration{
                 'type' => 'VARCHAR',
                 'constraint' => 100
             ),
-            'prescription_pic'=> array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-            ),
+
             'doc_id'=> array(
                 'type' => 'INT',
                 'constraint' => 5,

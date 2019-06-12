@@ -145,6 +145,7 @@ echo form_textarea($significant_history);
 echo '<div class="error">'.form_error('significant_history').'</div>';
 
 echo form_submit($patient_submit);
+echo form_close();
 echo '<br>';
 echo '<br>';
 
