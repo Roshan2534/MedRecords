@@ -5,7 +5,7 @@
     
       
     
-    <div class="col-4 text-center">
+    <div class="col-5 text-center">
     <img src="<?= base_url();?>assets/images/users/<?= $view_patient['profile_pic'];?>"
                 class="img-fluid" alt="" />
     

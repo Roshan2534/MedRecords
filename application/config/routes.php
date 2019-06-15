@@ -50,6 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['add']='patients/add';
+$route['search']='patients/search';
+$route['searchpatients']='patients/search/searchpatients';
 $route['home']='patients/home';
 $route['edit_patient_pic']='patients/home/edit_patient_pic';
 $route['login']='patients/login';
@@ -65,3 +67,4 @@ $route['update_profile_pic'] = 'patients/home/update_profile_pic';
 $route['default_controller'] = 'patients/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+

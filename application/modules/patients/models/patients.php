@@ -30,5 +30,13 @@ class patients extends MY_Model
     $querry=$this->db->select('patients.id,patients.doc_id,patients.firstname,patients.lastname,patients.email,patients.age,patients.gender,
     patients.address,patients.Contact_no,patients.Bloodgrp,patients.AllergicTo,patients.Significant_history,patients.profile_pic,doctor.username')->from('patients')->join('doctor','doctor.id=patients.doc_id')->where(array('patients.id' => $id))->order_by('patients.id','DESC')->get();
     return $querry->row_array();
-  }
+	}
+	public function get_patient($firstname){
+		$querry=$this->db->select('patients.id,patients.doc_id,patients.firstname,patients.lastname,patients.email,patients.age,patients.gender,
+    patients.address,patients.Contact_no,patients.Bloodgrp,patients.AllergicTo,patients.Significant_history,patients.profile_pic,doctor.username')->from('patients')->join('doctor','doctor.id=patients.doc_id')->where(array('patients.firstname' => $firstname))->order_by('patients.id','DESC')->get();
+    return $querry->result_array();
+	}
+
+
+	
 }

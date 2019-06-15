@@ -62,7 +62,7 @@ class home extends MX_Controller{
     {
         $this->form_validation->set_rules('firstname','Firstname','trim|required');
         $this->form_validation->set_rules('lastname','Lastname','trim|required');
-        $this->form_validation->set_rules('email','Email address','trim|valid_email|is_unique[patients.email]');
+        $this->form_validation->set_rules('email','Email address','trim|valid_email');
         $this->form_validation->set_rules('bloodgrp','Blood Group','trim');
         $this->form_validation->set_message('is_unique','The Email you are trying to register is already in use..!!');
         if($this->form_validation->run()===FALSE)
