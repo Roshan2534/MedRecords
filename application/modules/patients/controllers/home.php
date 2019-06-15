@@ -27,14 +27,16 @@ class home extends MX_Controller{
     
     public function view_patient($id)
     {
-        $id = $this->uri->segment(2);
+		$id = $this->uri->segment(2);
+		$patient_id = $this->uri->segment(2);
         if(empty($id))
         {
             show_404();
         }
         else{
             $data['view_patient']=$this->patients->get_single_patient($id);
-            $data['title']='View Patient';
+			$data['view_prescriptions']=$this->prescriptions->get_prescription($patient_id);
+			$data['title']='View Patient';
             $data['module']='patients';
             $data['view_file']='view_patient';
             echo Modules::run('templates/user_layout',$data);
@@ -132,7 +134,7 @@ class home extends MX_Controller{
        
          $config['upload_path']         = './assets/images/users/';
          $config['allowed_types']       = 'jpg|jpeg|png';
-         $config['max_size']            = 5120;
+         $config['max_size']            = 5000;
          $config['overwrite']           = TRUE;
          $config['remove_spaces']       = TRUE;
          $config['encrypt_name']        = TRUE;
@@ -198,8 +200,59 @@ class home extends MX_Controller{
             $data['view_file']='add_prescription';
             echo Modules::run('templates/user_layout',$data);
         }
-       }
+	   }
+	   
+	   public function add_prescription_pic()
+	   {
+		$config['upload_path']         = './assets/images/users/';
+		$config['allowed_types']       = 'jpg|jpeg|png';
+		$config['max_size']            = 5000;
+		$config['overwrite']           = TRUE;
+		$config['remove_spaces']       = TRUE;
+		$config['encrypt_name']        = TRUE;
+	  
+		$this->load->library('upload', $config);
+		$field_name = 'profilefile';
+	  
+		if( ! $this->upload->do_upload($field_name))
+		{
+			$data['error'] = $this->upload->display_errors();
+			$this->session->set_flashdata('UpdatePrescriptionPicError', $data['error']);
+			redirect('home');
+		}
+	  
+		else
+		{
+	  
+           $patient_id=$this->input->post('patient_id');
+		   echo $patient_id;
+		 
+		  $data['profile_pic'] = $this->patients->find($patient_id);
+		  $profile_pic = $data['profile_pic']['profile_pic'];
+	  
+		  $image_path = $this->upload->data();
+		  $data = array(
+			'profile_pic' => $image_path[file_name],
+			'patient_id'=>$patient_id,
+		  );
+	  
+		  $data['insert'] = $this->prescriptions->save($data);
+	  
+		  if(!empty($data['insert']))
+            {
+                $this->session->set_flashdata('PrescriptionPicadded','You have added the Prescription Successfully');
+                redirect('home');
+            }
+	  
+		  else {
+			echo 'can not add prescription';
+		  }
+		}
+	  
+	  
+	  }
+	   }
 
        
           
-}
+

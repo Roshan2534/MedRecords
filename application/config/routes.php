@@ -58,6 +58,7 @@ $route['docadd']='patients/docadd';
 $route['edit_patientinfo']='patients/home/edit_patientinfo';
 $route['view_patient/(:any)'] = 'patients/home/view_patient/$1';
 $route['add_prescription/(:any)'] = 'patients/home/add_prescription/$1';
+$route['add_prescription_pic'] = 'patients/home/add_prescription_pic';
 $route['edit_patient/(:any)'] = 'patients/home/edit_patient/$1';
 $route['edit_patient_pic/(:any)'] = 'patients/home/edit_patient_pic/$1';
 $route['update_profile_pic'] = 'patients/home/update_profile_pic';

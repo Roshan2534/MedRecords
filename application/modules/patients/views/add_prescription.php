@@ -15,7 +15,7 @@ $image_submit = array(
 );
 
 $patient_id = array(
-  'name' => 'id',
+  'name' => 'patient_id',
   'class' => 'form-control m-top-10',
   'type' => 'varchar',
   'id' => 'id',
@@ -32,7 +32,7 @@ $patient_id = array(
 
 
 <div class="col-10">
-  <?= form_open_multipart('update_prescription_pic'); ?>
+  <?= form_open_multipart('add_prescription_pic'); ?>
 
   <?= form_label('*Accepted format are .jpg| .jpeg| .png
                 and size of image should not exceed 5MB', 'profilefile'); ?>
