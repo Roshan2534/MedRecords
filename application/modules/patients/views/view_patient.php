@@ -1,4 +1,4 @@
-<div class="profile-holder">
+
 
   <div class="row grey-bg">
   
@@ -61,4 +61,4 @@ endforeach;
 		</div>
 		
 
-</div>
+
